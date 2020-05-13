@@ -25,7 +25,7 @@ test1_3=$(mktemp)
 test1_4=$(mktemp)
 fstatus=OK
 status=OK
-../rerun/rerun.sh > $test1_1
+../rerun/rerun.sh >$test1_1 2>$test1_1
 exitcom=$?
 if ! [ $exitcom -eq 1 ]
 then
@@ -36,7 +36,7 @@ then
 	fstatus=Failed
 	status=Failed
 fi
-../rerun/rerun.sh src/noname > $test1_2
+../rerun/rerun.sh src/noname >$test1_2 2>$test1_2
 exitcom=$?
 if ! [ $exitcom -eq 1 ]
 then 
@@ -47,7 +47,7 @@ then
 	fstatus=Failed
 	status=Failed
 fi
-../rerun/rerun.sh src/noexec_comando > $test1_3
+../rerun/rerun.sh src/noexec_comando >$test1_3 2>$test1_3
 exitcom=$?
 if ! [ $exitcom -eq 1 ]
 then
@@ -62,7 +62,7 @@ then
 	fstatus=Failed
 	status=Failed
 fi
-../rerun/rerun.sh src/dir_comando/ > $test1_4
+../rerun/rerun.sh src/dir_comando/ >$test1_4 2>$test1_4
 exitcom=$?
 if ! [ $exitcom -eq 1 ]
 then 
@@ -73,7 +73,7 @@ then
 	fstatus=Failed
 	status=Failed
 fi
-../rerun/rerun.sh src/prueba_comando src/asdf_comando  > $test1_4 &
+../rerun/rerun.sh src/prueba_comando src/asdf_comando  >$test1_4 &
 sleep 5
 if !(ps axo comm | grep -q rerun.sh)
 then
@@ -89,7 +89,7 @@ echo "Test 1: Analisis de argumentos: "$status
 test2=$(mktemp)
 status=OK
 ./src/alreadyexec_comando &
-../rerun/rerun.sh alreadyexec_comando > $test2
+../rerun/rerun.sh alreadyexec_comando >$test2 2>$test2
 exitcom=$?
 if ! [ $exitcom -eq 1 ]
 then
@@ -112,7 +112,7 @@ status=OK
 #cmID=$(ps aux | grep deleted_comando | grep -v grep | awk '{print $2}')
 #kill $cmID
 cp src/alreadyexec_comando src/deleted_comando
-../rerun/rerun.sh deleted_comando > $test3 &
+../rerun/rerun.sh deleted_comando >$test3 2>$test3 &
 sleep 1
 ./src/deleted_comando &
 sleep 3
@@ -137,7 +137,7 @@ echo "Test 3: Borrado de archivo a medio proceso:" $status
 test4=$(mktemp)
 status=OK
 cp src/alreadyexec_comando src/kill_comando
-../rerun/rerun.sh kill_comando > $test4 &
+../rerun/rerun.sh kill_comando >$test4 2>$test4 &
 ./src/kill_comando &
 cmID=$(ps aux | grep kill_comando | grep -v grep | awk '{print $2}')
 psID=$(ps aux | grep rerun | grep -v grep | awk '{print $2}')
@@ -165,7 +165,7 @@ if [ $fstatus = OK ]
 then
 	status=OK
 	testce_1=$(mktemp)
-	../rerun/rerun.sh casosesp/*  > $test1_4 &
+	../rerun/rerun.sh casosesp/*  > $testce_1 2>$testce_1 &
 	sleep 5
 	if !(ps axo comm | grep -q rerun.sh)
 	then
