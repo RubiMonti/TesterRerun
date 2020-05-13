@@ -1,0 +1,14 @@
+#--------------------------------------------------------------------------------------------------
+Esto es un test para el examen practico de laboratorio de sistemas
+Las comparaciones pueden no ser exactas ya que la creación de este test esta hecha por un alumno
+Ante cualquier error o duda contactad con: Ruben Montilla
+
+NOTA: Tener todos los apartados del tester bien no significa que el script este bien
+#--------------------------------------------------------------------------------------------------
+
+INSTRUCCIONES:
+1.Clonar este directorio a tu máquina local
+2.Mover el directorio a la carpeta en la que tengamos tanto rerun como rerun.git
+3.Entrar en rerun_tester
+4.Ejecutar "./tester"
+
